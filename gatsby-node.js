@@ -1,5 +1,4 @@
 const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -16,12 +15,12 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
     `).then(result => {
-      result.data.allDatoCmsBlog.edges.map(({ node: work }) => {
+      result.data.allDatoCmsBlog.edges.map(({ node: post }) => {
         createPage({
-          path: `works/${work.slug}`,
-          component: path.resolve(`./src/templates/work.js`),
+          path: `posts/${post.slug}`,
+          component: path.resolve(`./src/templates/post.js`),
           context: {
-            slug: work.slug,
+            slug: post.slug,
           },
         })
       })
